@@ -1,0 +1,8 @@
+/.hypothesis
+__pycache__
+/test.csv
+/test.ini
+/test.tmpl
+/.coverage
+/.pytest_cache
+/poetry.lock
