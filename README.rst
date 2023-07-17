@@ -61,6 +61,19 @@ Configuration is given as an ini file like the following.
 
 The only special section is **template.defaults**. These variables are made available to each template evaluation run.
 
+Passwords
+---------
+
+Currently you can give your password to log into the SMTP server via
+
+- The configuration file as described above
+- The environment variable ``PY_EMAILER_PASSWORD``
+
+Should you wish to pass your password in without recording it in your terminal history you can use the following pattern.
+
+    read -rs PY_EMAILER_PASSWORD
+    export PY_EMAILER_PASSWORD
+
 Template format
 ---------------
 

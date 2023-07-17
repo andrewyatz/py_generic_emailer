@@ -4,12 +4,13 @@ import configparser
 from string import Template
 import smtplib
 from email.message import EmailMessage
+import os
 
 
 class EmailCmd:
     @classmethod
     def from_args(cls, args):
-        cls(
+        return cls(
             template_file=args.template,
             config_file=args.config,
             input_file=args.input,
@@ -51,7 +52,11 @@ class EmailCmd:
             s.starttls()
         s.ehlo()
         if c["smtp"]["user"]:
-            s.login(c["smtp"]["user"], c["smtp"]["password"])
+            user = c["smtp"]["user"]
+            password = os.getenv('PY_EMAILER_PASSWORD', None)
+            if password is None and 'password' in c["smtp"]:
+                password = c["smtp"]["password"]
+            s.login(user, password)
         return s
 
     def generate_emails(self):
