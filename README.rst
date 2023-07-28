@@ -92,3 +92,5 @@ CSV format
 ----------
 
 You are free to specify any kind of data for your CSV with one exception. You **MUST** provide a column called ``email``. The code will use this field as the target email address of the message.
+
+The script also supports TSV files, but to activate this option make sure your file has ``.tsv`` extension.

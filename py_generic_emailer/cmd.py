@@ -68,7 +68,10 @@ class EmailCmd:
         if self.verbose:
             print(f"Template defaults: {template_defaults}")
         with open(self.input_file, mode="r") as csv_file:
-            csv_reader = csv.DictReader(csv_file)
+            if self.input_file.endswith(".tsv"):
+                csv_reader = csv.DictReader(csv_file, delimiter="\t")
+            else:
+                csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
                 if self.verbose:
                     print(f"Parsing row for email address {row['email']}")
