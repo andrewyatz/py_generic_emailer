@@ -104,6 +104,7 @@ class EmailCmd:
             msg["CC"] = email["cc_emails"]
             msg.set_content(email["content"])
             if self.live:
+                print(f"Sending e-mail to {msg['To']}")
                 s.send_message(msg)
             else:
                 print("=" * 10)
