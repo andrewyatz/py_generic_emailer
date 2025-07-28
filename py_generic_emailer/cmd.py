@@ -83,6 +83,7 @@ class EmailCmd:
                     {
                         "to_email": row["email"],
                         "from_email": from_email,
+                        "cc_emails": row.get("cc", ""),
                         "subject": subject,
                         "content": email_content,
                     }
@@ -100,13 +101,16 @@ class EmailCmd:
             msg["Subject"] = email["subject"]
             msg["From"] = email["from_email"]
             msg["To"] = email["to_email"]
+            msg["CC"] = email["cc_emails"]
             msg.set_content(email["content"])
             if self.live:
+                print(f"Sending e-mail to {msg['To']}")
                 s.send_message(msg)
             else:
                 print("=" * 10)
                 print(f"From: {msg['From']}")
                 print(f"To: {msg['To']}")
+                print(f"CC: {msg['CC']}")
                 print(f"Subject: {msg['Subject']}")
                 print(msg.get_content())
 
