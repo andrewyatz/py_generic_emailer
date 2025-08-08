@@ -53,8 +53,8 @@ class EmailCmd:
         s.ehlo()
         if c["smtp"]["user"]:
             user = c["smtp"]["user"]
-            password = os.getenv('PY_EMAILER_PASSWORD', None)
-            if password is None and 'password' in c["smtp"]:
+            password = os.getenv("PY_EMAILER_PASSWORD", None)
+            if password is None and "password" in c["smtp"]:
                 password = c["smtp"]["password"]
             s.login(user, password)
         return s
